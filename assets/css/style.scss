@@ -6,4 +6,5 @@
 #main-banner {
   padding-top:    0px;
   padding-bottom: 0px;
+  overflow: auto;       // Otherwise, child header causes white bar at top of page
 }
