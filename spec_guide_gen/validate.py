@@ -6,7 +6,8 @@
 # they can all be generated using the same code (see gen.py).
 #
 from jsonschema import validate
-import json
+
+from file_util import FileUtil
 
 
 def getSchema():
@@ -22,18 +23,11 @@ def getSchema():
   }
 
 
-def getJSONContents(filePath):
-  try:
-    with open(filePath, 'rb') as f:
-      return json.loads(f.read())
-  except Exception as e:
-    print('Failed to read JSON contents of %s: %s' % (filePath, e))
-    exit(1)
-  
-
 def validateGuide(filePath):
   schema = getSchema()
-  guide = getJSONContents(filePath)
+  guide = FileUtil.getJSONContents(filePath)
+  if (guide == None):
+    return False
 
   validatingStr = 'Validating %s...' % filePath
   print(validatingStr)
@@ -47,7 +41,9 @@ def validateGuide(filePath):
 
 
 def main():
-  guides = getJSONContents('guides.json')
+  guides = FileUtil.getJSONContents('guides.json')
+  if (guides == None):
+    exit(1)
 
   validGuides   = []
   invalidGuides = []
@@ -74,7 +70,6 @@ def main():
   else:
     print('0 invalid guides')
   print()
-
 
 
 if __name__ == '__main__':

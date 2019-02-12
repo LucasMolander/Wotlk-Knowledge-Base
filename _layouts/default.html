@@ -27,6 +27,8 @@
       <a href="?page=home" class="btn">Home</a>
       <a href="?page=one" class="btn">One</a>
       <a href="?page=two" class="btn">Two</a>
+      <a href="?page=assassination" class="btn">Assassination</a>
+      <a href="?page=combat" class="btn">Combat</a>
       <a href="test.md" class="btn">Test</a>
     </header>
 
@@ -36,6 +38,8 @@
       <div id="pages">
         <div id="page-home"></div>
         <div id="page-one"></div>
+        <div id="page-assassination"></div>
+        <div id="page-combat"></div>
         <div id="page-two"></div>
       </div>
 
@@ -60,6 +64,14 @@ function getDirectory() {
     'two': {
       'element_id': 'page-two',
       'html_path':  'pages/two.html'
+    },
+    'assassination': {
+      'element_id': 'page-assassination',
+      'html_path':  'spec_guides/rogue_assassination.html'
+    },
+    'combat': {
+      'element_id': 'page-combat',
+      'html_path':  'spec_guides/rogue_combat.html'
     },
     // 'main' is the default page!
     'home': {

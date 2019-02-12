@@ -6,6 +6,8 @@ This directory serves four main purposes:
   3) Validating the structures of stored guides
   4) Generating HTML for a guide
 
+In a nutshell, this allows us to separate the model (read: "data") from the view (read: "HTML").
+
 ## Storage
 Each guide is stored in its own JSON file, e.g.:
 ```
@@ -49,5 +51,5 @@ If `python validate.py` doesn't work, install Python 2.7+ and run `pip install -
 
 ## HTML Generation
 
-`<UNDER CONSTRUCTION>`
+Run `gen.py` to generate the HTML for each guide.
 

@@ -1,37 +1,25 @@
-## Welcome to GitHub Pages
+# Wrath of the Lich King Knowledge Base
+This README (along with this project) is a work in progress.
 
-You can use the [editor on GitHub](https://github.com/LucasMolander/Wotlk-Knowledge-Base/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+## Design Decisions and Explanations
+Explanations for some weird design decisions.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+### Including Everything in `_layouts/default.html`
+Explanation for this messiness!
+It's really because linking to other files doesn't really work.
+Therefore, just use the 'page' `GET` argument and set the HTML dynamically.
 
-### Markdown
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+## Development Workflow
+Asdf
 
-```markdown
-Syntax highlighted code block
+### Adding a New Page
+If you've developed or generate some nice HTML and want to add it to the website,
+you must edit `_layouts/default.html`:
+  1) Add a div in `<div id="pages">`
+  2) Add its entry to `getDirectory()`
+  3) Add a `btn` link to it in the `#main-banner` banner
 
-# Header 1
-## Header 2
-### Header 3
 
-- Bulleted
-- List
+## Asdf
 
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/LucasMolander/Wotlk-Knowledge-Base/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
