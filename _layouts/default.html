@@ -24,17 +24,20 @@
     <header class="page-header" role="banner" id="main-banner">
       <h1>Wrath of the Lich King Knowledge Base</h1>
       <h2>Guide for 3.3.5a and Dalaran-WoW</h2>
-      <a href="page2.html" class="btn">Page 2</a>
+      <a href="?page=home" class="btn">Home</a>
+      <a href="?page=one" class="btn">One</a>
+      <a href="?page=two" class="btn">Two</a>
       <a href="test.md" class="btn">Test</a>
-      <a href="https://google.com" class="btn">Google</a>
-      <a href="https://facebook.com" class="btn">Facebook</a>
-      <a href="https://twitter.com" class="btn">Twitter</a>
     </header>
 
     <main id="content" class="main-content" role="main">
       {{ content }}
 
-      <div id="test-page"></div>
+      <div id="pages">
+        <div id="page-home"></div>
+        <div id="page-one"></div>
+        <div id="page-two"></div>
+      </div>
 
       <footer class="site-footer">
       </footer>
@@ -42,4 +45,70 @@
   </body>
 </html>
 
-<script type="text/javascript" src="js/test.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script>
+/**
+ * This is the source of truth for which page's contents is stored where.
+ */
+function getDirectory() {
+  return {
+    'one': {
+      'element_id': 'page-one',
+      'html_path':  'pages/one.html'
+    },
+    'two': {
+      'element_id': 'page-two',
+      'html_path':  'pages/two.html'
+    },
+    // 'main' is the default page!
+    'home': {
+      'element_id': 'page-home',
+      'html_path':  'pages/home.html'
+    }
+  };
+}
+
+
+/**
+ * Stolen from nickf's answer on Stack Overflow:
+ * https://stackoverflow.com/questions/1586330/access-get-directly-from-javascript
+ */
+function getGETArgs() {
+  var parts = window.location.search.substr(1).split("&");
+  var $_GET = {};
+  for (var i = 0; i < parts.length; i++) {
+      var temp = parts[i].split("=");
+      $_GET[decodeURIComponent(temp[0])] = decodeURIComponent(temp[1]);
+  }
+
+  return $_GET;
+}
+
+
+/**
+ * Loads the HTML from the appropriate page into the appropriate field.
+ */
+function loadPageContent(page) {
+  var directory = getDirectory();
+  var id   = directory[page]['element_id'];
+  var path = directory[page]['html_path'];
+
+  $("#" + id).load(path); 
+}
+
+
+/**
+ * Think of this like main().
+ */
+$(function(){
+  var args = getGETArgs();
+  var directory = getDirectory();
+
+  if (args['page'] && args['page'] in directory) {
+    loadPageContent(args['page']);
+  } else {
+    loadPageContent('home');
+  }
+});
+</script>
